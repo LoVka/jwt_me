@@ -3,7 +3,7 @@ require 'clipboard'
 
 RSpec.describe 'jwt_me' do
   before { Clipboard.clear }
-  let(:jwt_me) { File.join(File.expand_path(File.join('..', '..'), __FILE__), 'jwt_me') }
+  let(:jwt_me) { File.join(File.expand_path(File.join('..', '..'), __FILE__), 'exe', 'jwt_me') }
 
   it 'copies JWT to clipboard when valid min params' do
     $stdin = StringIO.new "user_id\n1234\nemail\ntest@text.ua\nno"
@@ -30,6 +30,6 @@ RSpec.describe 'jwt_me' do
   it 'copies JWT to clipboard with some extra params' do
     $stdin = StringIO.new "user_id\n1234\nemail\ntest@tuto.dd\nyes\nname\nBen"
     load jwt_me
-    expect(Clipboard.paste).to eq('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTIzNCIsImVtYWlsIjoidGVzdEB0dXRvLmRkIn0.a24OBBvgqvhkS8t7pF1NY9VmAf3_Q_CuEFbRfuLdXss')
+    expect(Clipboard.paste).to eq('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTIzNCIsImVtYWlsIjoidGVzdEB0dXRvLmRkIiwibmFtZSI6IkJlbiJ9.GL2haUmLXLCgvncm1YRZWVDMc5_6m-ovuHPnUYZIiFA')
   end
 end

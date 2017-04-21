@@ -1,10 +1,3 @@
-#!/usr/bin/env ruby
-require 'jwt'
-require 'clipboard'
-#require 'highline/import'
-
-SECRET = 'SECRET NAME'
-
 class Dialog
   MAX_NUM = 10
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -41,16 +34,4 @@ class Dialog
     puts text
     gets.to_s.chomp
   end
-end
-
-puts 'Starting with JWT token generation.'
-dialog = Dialog.new
-dialog.ask_params
-
-if dialog.valid?
-  token = JWT.encode(dialog.params, SECRET, 'HS256')
-  Clipboard.copy token
-  puts 'The JWT has been copied to your clipboard!'
-else
-  abort dialog.error_messages.join(', ')
 end
